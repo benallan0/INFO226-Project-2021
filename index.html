@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Happy Buildings</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <!-- link for the font style -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet" />
+
+    <script src="https://kit.fontawesome.com/40f974966b.js" crossorigin="anonymous"></script>
+
+  </head>
+
+
+  <!-- body of the happy buildings html webpage -->
+  <body ng-app="myApp" ng-controller="myCtrl" ng-cloak>
+
+      
+
+
+
+    <!-------------- Log in page ----------------------->
+    <div ng-show="loginPage"> 
+
+      <!-- header or title of login page-->
+      <header>
+        <h1 id="title">Welcome to Happy Buildings!  <i class="fas fa-city"></h1>
+        <br />
+      </header>
+
+      <!-- navigation bar -->
+      <nav>
+        <ul id="navigation">
+          <li>
+            <button ng-click="showLogin()"<a href="#logout">
+              <i class="fas fa-sign-in-alt"></i>
+                Login Page
+            </button>
+          </li>
+
+          <li>
+            <button ng-click="showAboutUs()"<a href="#aboutus">  
+              <i class="fas fa-users"></i>
+                 About Us
+            </button>
+          </li>
+          
+          <li><button ng-click="showRegistration()"
+            <a href="#home"><i class="fas fa-user-plus"></i> Create Account</button>
+          </li>
+        </ul>
+      </nav>
+
+      <br>
+
+          <!-- login form section section -->
+      <div>
+        <form id="login" name="loginForm" novalidate>
+          <fieldset>
+            <h4>Sign In Here</h4>
+            <label for="username" id="username">Username:</label>
+            <input type="text" placeholder="Enter Username" id="username" name="userName" ng-model="userName" ng-required="true" />
+            <br><br>
+            <!-- Password text field -->
+            <label for="password" id="password">Password:</label>
+            <input type="password" placeholder="Enter Password" id="password" name="userPwd" ng-model= "userPwd" ng-required="true"/>
+            <br><br>
+            
+            <!-- submit button -->
+            <input type="submit" value="Login" id="submit" ng-click="loginValidator();" ng-disabled="loginForm.$invalid"/> 
+
+            <!-- reset button  GOTTA GET TO CLEAR FEEDBACK?-->  
+            <input type="reset" value="Cancel" id="cancel"  />      
+          </fieldset>
+        </form>
+      </div>
+      <br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br>
+      <br><br>
+      <br><br><br><br><br><br><br><br><br><br>
+
+
+          <!-- the bottom or footer of the login page -->
+      <footer id="footer">
+        <fieldset>
+          <h3>Thanks for visiting Happy Buildings! <i class="fas fa-city"></h3>
+          <p>
+            <small>
+              Copyright &copy; 2021, Happy Buildings Company Limited. All Rights Reserved. Owned and Designed by Ben Allan and Ted Dobbs.
+            </small>
+          </p>
+        </fieldset>
+      </footer>
+
+    </div> <!-- login page closing div -->
+
+
+
+
+
+
+
+
+    <!----------------- buliding directory -------------------------->
+    <div ng-show="buildingDirectoryNAVTitle">
+ 
+      <!--COMPANY TITLE-->
+      <h1 id = "title"> Happy Buildings  <i class="fas fa-city"></h1>
+
+      <!-- NAVBAR-->
+      <div id ="navigation2">
+        <li><button ng-click="showDirectory()" <a class="active" href="#home"><i class="fas fa-home"></i> Home</button></li>
+        <li><button ng-click="showOut()" <a href="#aboutus"><i class="fas fa-sign-in-alt"></i> Login Page</button></li>
+        <li><button ng-click="showAboutUs2()"<a href="#projects"><i class="fas fa-users"></i> About Us</button></li>
+        <li><button ng-click="showOut()"<a href="#logout"><i class="fas fa-sign-out-alt"></i> Sign Out</button></li>
+      </div> <!-- NAV BAR closing div fas fa-binoculars -->
+    </div>
+        
+      <!--MAIN MENU TABS-->
+      <!--DIRECTORY FILTER-->
+      <!--Intending to use JS to make this search bar filter what buildings appear in the directory by address, owner or unique identifier.-->
+    <div id="r1BuildingInfo"ng-show = "buildingDirectoryPage">  
+    <header>
+      <h2>Building Directory</h2>
+      <p>Welcome Back, {{userName}}</p>
+    </header>
+
+
+
+    <!----Building MODIFICATION BUTTONS ----->
+    <div>
+      <button id="projectButtons" ng-click="getBuildingDirectory()">Archives</button>
+      <button id="projectButtons" ng-click="showAddBuilding()">Add Building </button>
+    </div>
+      <br>
+
+
+      <!------FILTER BAR- ----->
+      <!--Will be used to display projects based on Owners Name-->  
+      <div>
+        Search By Owner's Name: <input ng-model="OwnerName"/>
+      </div>
+      <br>
+
+
+      <!--PROJECT DATA TABLE PLACEHOLDERS-->
+      <!--This data supplied is purely to be a placeholder for the data we are supplied for server communication later in the course.-->
+      <!--Looking to write JS here to only display the first few data entries-->
+    <div>
+      <table id = "buildingDTable">
+        <th>ID</th>
+        <th>Owner</th>
+        
+        <th>Address</th>
+        <th>Building Type </th>
+        <th>Construction Date </th>
+        <th> More Information </th>
+        <th> Delete Building </th>
+      <tr ng-repeat = "x in data.buildings | orderBy:'ID'| filter:{Owner:OwnerName}">
+          <td>{{x.ID}}</td>
+          <td>{{x.Owner}} </td>
+          
+          <td>{{x.Address}} </td>
+          <td>{{x.BulidingType}}</td>
+          <td>{{x.ConstructionDate | date : 'fullDate'}}  </td>
+          
+    
+<!--When this button is clicked it needs to take the user to a specific building ID -->
+          <td><button id="projectButtons" ng-click = "showBuildingInfoPage(x)">View </button> </td>
+          <td><button id="projectButtons" ng-click = "deleteBuilding(build, $index)"> Delete </button>
+      </tr>
+      </table>
+      </div>
+      <br><br><br><br>
+    </div> <!-- building directory closing div -->
+
+
+        <!----- BUILDING INFO PAGE /Project Directory----->
+    <div id= "comments" ng-show = "buildingInfoPage" >
+          <!-- Title of Create Account page-->
+            <header>
+              <h3> Building Information </h1>
+              </br>
+              <button id="projectButtons" ng-click ="editbuilding()">Modify Building</button> 
+            </header>
+          <p>Building ID: {{ID}}</p>
+          <p>Building Owner: {{Owner}}</p>
+          <p>Building Address: {{Address}} </p>
+          <p>Building Type: {{BuildingType}} </p>
+          <p>Construction Date: 
+              {{ConstructionDate | date : 'fullDate'}} </p>
+
+          <h4>Projects:   <button id="projectButtons" ng-click="showAddProject()"> Add Project </button> </h4> 
+
+          <!-- projects table -->
+          <div>
+              <table id= "buildingDTable">
+                <th> Project ID: </th> 
+                <th> Project Name: </th>
+                <th> More Info </th>
+                <th> Delete </th>
+              <tr "x in data.project"> 
+                <td> {{ProjectID}} </td>
+                <td> {{Name}} </td>
+
+                <td><button id="projectButtons" ng-click="showProjectInfo(x)"> Project Info </button></td>
+                <td><button id="projectButtons" ng-click = "deleteProject(proj, $index)"> Delete Project </button></td>   
+              </tr>
+              </table>
+              <br>
+              <button id="projectButtons" ng-click="exitBuildingInfoPage()"> Exit </button>
+          </div>
+    </div> <!-- Building info (manager) closing div -->
+
+
+
+    <!---------- ADD Building page ------>
+    <div id= "comments" ng-show="addBuildingPage">
+     
+      <h3>Add Building </h3>
+     
+      <form novalidate>
+        ID:<br>
+          <input type="number" ng-model="ID" ng-required="true"><br>
+          <br>
+        Owner:<br>
+         <input type="text" ng-model="Owner" ng-required="true"><br>
+        Address: <br>
+          <input type="text" ng-model="Address" ng-required="true"><br>
+        Building Type: <br> 
+          <input type = "text" ng-model="BuildingType" ng-required="true"><br>
+        Construction Date: <br>
+          <input type = "datetime-local" ng-model="ConstructionDate" ng-required="true"><br>
+        <br><br>
+        <button id="projectButtons" ng-click="postBuilding()"> Add Building</button>
+        <input type="reset" value="Cancel" id="projectButtons" />
+        <button id="projectButtons" ng-click="exitAddBuilding()">
+           Exit</button>
+      </form>
+    </div> <!-- end of add building div -->
+
+
+
+
+    <!-- A single Project Page  -->
+  <div id="comments" ng-show="projectInfoPage">
+    <h3>Project Details</h3>
+    <!--Signal Problem, Add Comment, Add Work and Edit buttons-->
+    <div id = "commentsnav">
+      <button id="projectButtons" ng-click = "showSignalProblem()" type="button">Signal Problem</button>
+      <button id="projectButtons" type="button">Edit</button>
+      <button id="projectButtons" ng-click= "showAddComment()" type="button">Add Comment</button>
+      <button id="projectButtons" ng-click="showAddWork()" type="button">Add Work</button>
+      <button id="projectButtons" ng-click="exitProjectInfo()">Exit </button>
+    </div>
+    <div id="project display">
+      <h4>Project ID: {{ProjectID}}</h4>
+      <h4>Project Name: {{Name}}</h4>
+      <h4>Building ID: {{BuildingID}} </h4>
+      <h4>Start Date: {{StartDate}}</h4>
+      <h4>Finish Date: {{FinishDate}}</h4>
+      <h4>Contact Person: {{ContactPerson}}</h4>
+      <h4>Project Manager: {{ProjectManager}}</h4>
+      <h4>Contractor: {{Contractor}}</h4>
+      <h4>Status: {{Status}} </h4>
+    </div>
+
+    <!--Comment display--> 
+    <!--Intending to add an edit and delete function-->
+    <div id="comments">
+    <h4>Comments</h4>
+    <p> Details of comments are listed here. </p>
+    <table>
+      <tr ng-repeat = "x in addComments">
+        <td> {{ProjectList[1].Comments[1]</td>
+    </table>
+    </div>
+
+
+    <!--Work display-->
+    <!--Intending to add an edit and delete function-->
+    <div id="works">
+      <h4>Works</h4>
+        <p>Details of works are listed here. </p>
+    </div>
+    <br>
+
+
+  </div> <!-- end of project info page -->
+
+
+    <!---- Signal Problem page-->
+  <div id = "problemCommentsPage" ng-show="problemCommentsPage"> 
+    <h3>Signal Problem</h3>
+      <p>Describe the problem with the project.</p>
+        <input type="text" placeholder="Enter Problem Here" id="problem">
+        <input id="projectButtons" type="submit" Value="Submit" ng-click="alertProject()">
+        <input id="projectButtons" type="reset" Value="Reset">
+        <button id="projectButtons" ng-click = "exitProblemComments ()" type ="button">Exit</button>
+
+  </div> <!-- signal page closing div-->
+
+
+    <!--Add A Work Page-->
+  <form novalidate>
+  <div id="AddWork" ng-show="addWork">
+    <h3> Add a Work </h3>
+      <label for "worktype">Describe Work Type:</label>
+      <input type="text" ng-model="TypeOfWork" placeholder="Describe Work Type" id="worktype"><br><br>
+    
+      <label for "status">Status:</label>
+      <input type="text" ng-model="Status" placeholder="Describe Work Status"><br><br>
+      
+      <button id="projectButtons" button type="submit" ng-click="postWork()">Submit</button>
+
+      <button id="projectButtons" button type="reset" ng-click="resetWork()">Reset</button>
+
+
+      <button id="projectButtons" button type="button" ng-click="addWorkExit()">Exit
+      </button>
+    </form>
+
+  </div> <!-- Add work closing div -->
+
+  <!--Add a comment page-->
+  <div id="comments" ng-show="addComments">
+      <h3>Add A Comment</h3>
+      <form>
+        <label for "commenttype">Select Author Type:</label> <br>
+          <select name="commenttype" id ="commenttype">
+            <option value="Owner">Owner</option>
+            <option value="Contractor">Contractor</option>
+            <option value="Project Manager">Project Manager</option>
+      
+        <br><br><br><br><br><br><br><br><br><br>
+        <!--Add text for a comment-->
+        <label for "commenttext">Add Comment Text:</label>
+          <input type="text" placeholder="Add Comment Text Here" id="commenttext">
+          <input id="projectButtons" type="submit" Value ="Submit">
+          <input id="projectButtons" type="reset" Value="Reset">
+          <button id="projectButtons" ng-click="exitAddComments ()" type="button">Exit</button>
+      </form>
+    </div>
+
+
+      <!--ADD PROJECT SCREEN-->
+      <!--This feature will only be limited to managers. Will be displayed with JS with Add Project button.-->
+    <div id="addProjectInfo" ng-show = "addProjectPage">
+       <h2>Add A Project</h2>
+
+    <!--Project Details Information Display-->
+     <form name="projectForm" novalidate>
+        Project ID:  <input type="number" ng-model="ProjectID" ng-required="true"/>
+        <br><br>
+        Name:  <input ng-model="Name" ng-required="true"/>
+        <br><br>
+        Building ID:  <input type="number" ng-model="BuildingID" ng-required="true"/>
+        <br><br>
+        Status:  <input ng-model="Status" ng-required="true"/>
+        <br><br>
+        Start Date:  <input type="datetime-local" value="{{StartDate}}" ng-model="StartDate" ng-required="true"/>
+        <br><br>
+        End Date:  <input type="datetime-local" value="{{EndDate}}" ng-model="EndDate" ng-required="true"/>
+        <br><br>
+        Contact Person:  <input ng-model="ContactPerson" ng-required="true"/>
+        <br><br>
+        Project Manager:  <input ng-model="ProjectManager" ng-required="true"/>
+        <br><br>
+        Contractor:  <input ng-model="Contractor" ng-required="true"/>
+        <br><br>
+        <button id= "projectButtons" ng-click="postProject()" ng-disabled="projectForm.$invalid">Add Project</button>
+        <button id="projectButtons" type="reset" ng-click ="cancelAddProject()">Cancel</button>
+        <button id="projectButtons" ng-click ="exitAddProject()">Exit </button>
+      </form>
+
+    </div> <!-- add project closing div -->
+
+
+
+
+
+
+
+
+
+    <!------------------ our services and about us ------------>
+  <div ng-show = "aboutUsPage">
+      
+      <!--COMPANY TITLE-->
+      <h1 id = "title"> Happy Buildings <i class="fas fa-city"></h1>
+
+
+        <!-- navigation bar -->
+      <nav>
+        <ul id="navigation">
+          <li><button ng-click="showLogin()"<a href="#logout"><i class="fas fa-sign-in-alt"></i> Login Page</button></li> <li><button ng-click="showAboutUs()"<a href="#aboutus"><i class="fas fa-users"></i> About Us</button></li> <li><button ng-click="showRegistration()"
+            <a href="#home"><i class="fas fa-user-plus"></i> Create Account</button></li>
+        </ul>
+      </nav>
+
+       <div> 
+        <!-- Title of About us page-->
+        <header>
+          <h1 id= "title"> About Us!</h1>
+        </header>
+      <br>
+		<!-- information/paragraph about us (different ID)-->
+		<main id="aboutus">
+			<p id="ab"> HappyBuildings is a project inspection firm working for the New Zealand government. We make it our responsibility to oversee the maintenance projects. HappyBuildings tracks when, where and what has to be done, who is going to do it, and when works are expected to be completed. HappyBuildings also make sure that all parties involved in a project are happy and satisfied with the organisational flow and the followed results. </p>
+		</main>
+		
+		</div> <!-- About us closing div --> 		<br><br><br><br>
+
+		<!------ Our Services ---->
+		<div>
+			<!-- header or title of About us page-->
+			<header>
+				<h1 id="title"> Our services! </h1>
+				</br>
+			</header>
+
+			<!-- information/paragraph about us (different ID)-->
+			<main id="aboutus">
+				<p id="ab"> HappyBuildings offer a range of services for the New Zealand goverment. We strive to deliver top
+					quality service with information storage and management. With services including but not limited to: </p>
+				<div id="ab">
+					<li> Informational management. </li>
+					<li> Information storage. </li>
+					<li> Flexible system. </li>
+					<li> Available on all devices. </li>
+					<li> Owner and Contractor Access. </li>
+					<li> Notification and comment sections. </li>
+				</div>
+			</main>
+		</div> <!-- our services closing div -->
+		
+		<br><br><br><br><br>
+		<!-- the bottom or footer of the about us/services page -->
+		<footer id="footer">
+			<fieldset>
+				<h3>Thanks for visiting Happy Buildings!  <i class="fas fa-city"></h3>
+				<p>
+					<small>
+		                Copyright &copy; 2021, Happy Buildings Company limited. All Rights Reserved. Owned and Designed by Ben Allan and Tedd Dobbs.
+		                </small>
+				</p>
+			</fieldset>
+		</footer>
+  </div> <!-- our services and about us closing div -->
+
+
+    
+
+
+
+
+
+
+    
+    <!----------------- Registration Page ----------------------->
+    <div ng-show = "registrationPage">
+      
+      <!--COMPANY TITLE-->
+      <h1 id = "title"> Happy Buildings  <i class="fas fa-city"></h1>
+
+      <!-- navigation bar -->
+      <nav>
+        <ul id="navigation">
+          <li><button ng-click="showLogin()"<a href="#logout">
+            <i class="fas fa-sign-in-alt"></i> Login Page</button>
+          </li>
+          <li><button ng-click="showAboutUs()"<a href="#aboutus">
+            <i class="fas fa-users"></i> About Us</button>
+          </li>
+          <li><button ng-click="showRegistration()"
+            <a href="#home"><i class="fas fa-user-plus"></i> Create Account</button>
+          </li>
+        </ul>
+      </nav>
+
+
+
+
+
+      <!-- Create Account  div -->
+      <div>
+		<!-- Title of Create Account page-->
+		<header>
+			<h1 id="title"> Create your new Account</h1>
+			<br />
+		</header>
+		<br />
+		
+		<!-- Create Account field-->
+		<form id="createAccount">
+			<fieldset>
+				<h4>Sign up here <i class="fas fa-user-plus"></h4>
+		
+		
+				<!-- username field -->
+				<label for="createUsername" id="username"> Enter your new Username:</label>
+				<input type="text" id="username"  ng-model="LoginName"/>
+				<br /><br />
+		
+				<!-- password field -->
+				<label for="createPassword" id="password"> Enter your new Password:</label>
+				<input type="password" id="password" ng-model="Password" />
+				<br /><br />
+		
+        <!-- usertyoe field  -->
+				<label for="email" id="email">Enter your User Type:</label>
+				<input type="text" id="username" ng-model="UserType" />
+				<br /><br />
+
+				<!-- submit and reset buttons -->
+				<input type="submit" value="Submit" id="submit" ng-click="postUser()"/>
+				<input type="reset" value="Cancel" id="cancel" />
+		  </fieldset>
+		</form>
+		
+		</div> <!-- Create account closing div -->
+		
+
+
+
+		<br><br><br><br><br>
+		
+		<!-- The bottom or footer of the Ceate account page -->
+		<footer id="footer">
+			<fieldset>
+				<h3>Thanks for visiting Happy Buildings!  <i class="fas fa-city"></h3>
+				<p>
+					<small>
+		              Copyright &copy; 2021, Happy Buildings Company limited. All Rights Reserved. Owned and Designed by Ben Allan and Ted Dobbs.
+		              </small>
+				</p>
+			</fieldset>
+		</footer>
+		</div> <!-- registration closing div -->
+  
+  </body>
+</html>

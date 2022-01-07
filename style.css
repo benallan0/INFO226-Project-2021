@@ -1,0 +1,379 @@
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+	display: none !important;
+}
+
+/* sets the background image to the chosen linked one */
+body {
+  background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/10/Building-Wallpapers-HD-768x480.jpg");
+  background-size: 100%;
+  background-attachment: fixed;
+}
+
+fieldset{
+	 border: none;
+}
+
+/* ================ NAVIGATION BARS ========================*/
+/* ---------------- NAVIGATION BAR title------------------- */
+
+/* The setup bar itself */
+#navigation {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	background-color: #333;
+	overflow: hidden;
+	width: 100%;
+}
+
+/* sets bar list across page */
+#navigation li {
+	float: left;
+}
+
+/* sets each link in a box */
+#navigation button {
+	display: block;
+	width: 493px;
+	text-decoration: none;
+	padding: 14px 16px;
+	font-family: 'Oswald', sans-serif;
+	cursor: pointer;
+}
+
+
+/* changes the colour of the text and background box when hovering over it*/
+#navigation button:hover {
+	color: #008B8B;
+	background-color: #111;
+}
+
+
+
+/* ----------- NAVIGATION BAR  in building directory---------------- */
+
+/* The setup bar itself */
+#navigation2 {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	background-color: #333;
+	overflow: hidden;
+	width: 100%;
+}
+
+/* sets bar list across page */
+#navigation2 li {
+	float: left;
+}
+
+/* sets each link in a box */
+#navigation2 button {
+	display: block;
+	width: 372px;
+	text-decoration: none;
+	padding: 14px 16px;
+	font-family: 'Oswald', sans-serif;
+	cursor: pointer;
+}
+
+/* changes the colour of the text and background box when hovering over it*/
+#navigation2 button:hover {
+	color: #008B8B;
+	background-color: #111;
+}
+
+
+
+
+
+
+
+/*------------LOGIN PAGE---------------*/
+
+/* main header */
+#title {
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	width: 100%;
+	letter-spacing: 1px;
+	color: darkblue;
+	background-color: whitesmoke;
+	
+
+}
+
+h4 {
+	text-align: left;
+	font-family: 'Oswald', sans-serif;
+	width: 95%;
+}
+
+h2, h3 {
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	width: 100%;
+}
+
+ /* login/input validation */ 
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+input[disabled="disabled"] {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+
+
+/* ------------------- login form box ------------- */
+
+/* log in field box */
+#login {
+	border-radius: 20px;
+	position: center;
+	text-align: left;
+	background-color: whitesmoke;
+	overflow: hidden;
+	width: 30%;
+	margin: auto;
+	border:2px solid black;
+
+}
+
+/* submit button styling */
+#submit {
+	background-color: #002147;
+	color: white;
+	width: 24%;
+	font-family: sans-serif;
+	cursor: pointer;
+}
+
+/* sets the colour when hovering over the submit button */
+#submit:hover {
+	color: #008B8B;
+	background-color: #111;
+}
+
+
+/* cancel button styling */
+#cancel {
+	background-color: #002147;
+	color: white;
+	width: 24%;
+	font-family: sans-serif;
+	cursor: pointer;
+}
+
+/* sets the colour when hovering over the cancel button */
+#cancel:hover {
+	color: #008B8B;
+}
+
+
+/* username styling and password */
+#username {
+	text-align: left;
+	font-family: 'Oswald', sans-serif;
+	width: 200px;
+}
+
+#password {
+	text-align: left;
+	font-family: 'Oswald', sans-serif;
+	width: 200px;
+}
+
+#email{
+	text-align: left;
+	font-family: 'Oswald', sans-serif;
+	width: 200px;
+}
+
+
+/* ---------------- page footer box ---------------- */
+#footer {
+	background-color: whitesmoke;
+	font-family: sans-serif;
+	color: black;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	overflow: hidden;
+	width: 100%;
+}
+
+
+
+
+/* ------ about us and our services page ------ */
+#aboutus {
+	border:2px solid black;
+	border-radius: 20px;
+	position: center;
+	text-align: left;
+	background-color: whitesmoke;
+	overflow: hidden;
+	width: 50%;
+	margin: auto;
+}
+
+#ab {
+	text-align: left;
+	padding: 0px;
+	margin: 10px;
+	font-family: 'Oswald', sans-serif;
+
+}
+
+
+
+
+
+/* -------------  SIGN UP PAGE  -------------- */
+
+#createAccount {
+	border-radius: 20px;
+	border:2px solid black;
+	position: center;
+	text-align: left;
+	background-color: whitesmoke;
+	overflow: hidden;
+	width: 45%;
+	margin: auto;
+}
+
+
+
+
+/* ------------- Building Directory page -------------- */
+
+#buildingDTable {
+	width:100%;
+	border: 2px solid black;
+	background-color: white;
+	position: center;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid black;
+	font-family: 'Oswald',sans-serif;
+}
+
+
+
+/*building display information*/
+ 
+#r1BuildingInfo {
+	background-color: whitesmoke;
+	padding: 30px;
+	border-radius: 30px;
+	margin-top: 60px;
+	font-family: 'Oswald',sans-serif;
+	border:2px solid black;
+
+
+}
+
+
+
+/*------------------ PROJECT PAGE ------------------- */
+
+/* project buttons */
+/* submit button styling */
+#projectButtons {
+	background-color: #002147;
+	color: white;
+	font-family: 'Oswald', sans-serif;
+	cursor: pointer;
+}
+
+/* sets the colour when hovering over the submit button */
+#projectButtons:hover {
+	color: #008B8B;
+	background-color: #111;
+}
+
+
+/*project details display*/
+#projectExample {
+	background-color: whitesmoke;
+	border-radius: 20px;
+	padding: 40px;
+	border:2px solid black;
+
+}
+
+
+/*comment display background*/
+#comments {
+	border:2px solid black;
+	border-radius: 10px;
+	background-color: whitesmoke;
+	margin-top: 30px;
+	padding:20px;
+	margin-right:10px;
+	font-family: 'Oswald',sans-serif;
+}
+
+#problemCommentsPage {
+	border:2px solid black;
+	border-radius: 10px;
+	background-color: whitesmoke;
+	margin-top: 30px;
+	padding:20px;
+	margin-right:10px;
+	font-family: 'Oswald',sans-serif;
+}
+
+/*work display information*/
+#works {
+	border:2px solid black;
+	border-radius: 10px;
+	background-color: whitesmoke;
+	margin-top: 30px;
+	padding:20px;
+	margin-right:10px;
+	font-family: 'Oswald',sans-serif;
+
+}
+
+
+#addProjectInfo {
+	border-radius: 20px;
+	border:2px solid black;
+	position: center;
+	text-align: left;
+	background-color: whitesmoke;
+	overflow: hidden;
+	width: 45%;
+	margin: auto;
+	padding:30px;
+	margin-top:30px;
+	font-family: 'Oswald', sans-serif;
+}
+
+
+
+/*Add a Work page UI*/
+#AddWork {
+	background-color: whitesmoke;
+	border-radius: 10px;
+	padding:40px;
+	margin-top: 50px;
+	font-family: 'Oswald',sans-serif;
+	border:2px solid black;
+
+}
